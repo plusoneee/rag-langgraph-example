@@ -1,13 +1,13 @@
-from typing import List, TypedDict
+from typing import TypedDict, Annotated, Sequence
+from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
+
 
 class GraphState(TypedDict):
     """
     GraphState is a TypedDict that represents the state of a graph.
     Attributes:
-        query (str): The query string.
-        generation (str): The generation string.
-        documents (List[str]): A list of document strings.
+        history (Sequence[BaseMessage]): A sequence of messages.
     """
-    query: str
-    generation: str
-    documents: List[str]
+
+    history: Annotated[Sequence[BaseMessage], add_messages]
